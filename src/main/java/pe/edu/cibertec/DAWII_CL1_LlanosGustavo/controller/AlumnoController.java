@@ -26,10 +26,12 @@ public class AlumnoController {
         return "Alumno/frmMantAlumno";
     }
 
+
+    /*REVISAR, AQUÍ TAL VEZ ESTÉ EL ERROR*/
     @PostMapping("/registrarAlumno")
     @ResponseBody
     public ResultadoResponse registrarAlumno(@RequestBody AlumnoRequest alumnoRequest){
-        String mensaje = "Alumno matriculado correctamente";
+        String mensaje = "Matrícula realizada correctamente";
         Boolean respuesta = true;
         try{
             Alumno objAlumno = new Alumno();
@@ -44,7 +46,7 @@ public class AlumnoController {
             objAlumno.setProce(alumnoRequest.getProce());
             alumnoService.registrarAlumno(objAlumno);
         }catch (Exception ex){
-            mensaje = "No se pudo matricular al alumno";
+            mensaje = "ERROR al matricular al alumno";
             respuesta = false;
         }
         return ResultadoResponse.builder()
@@ -55,12 +57,12 @@ public class AlumnoController {
     @DeleteMapping("/eliminarAlumno")
     @ResponseBody
     public ResultadoResponse eliminarAlumno(@RequestBody AlumnoRequest alumnoRequest){
-        String mensaje = "Alumno eliminado correctamente";
+        String mensaje = "Eliminación exitosa";
         Boolean respuesta = true;
         try{
             alumnoService.eliminarAlumno(alumnoRequest.getIdalumno());
         }catch (Exception ex){
-            mensaje = "No se pudo eliminar al alumno";
+            mensaje = "ERROR al eliminar al alumno";
             respuesta = false;
         }
         return ResultadoResponse.builder()
